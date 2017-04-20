@@ -12,7 +12,6 @@ use Cake\ORM\Entity;
  * @property string $sopa
  * @property string $prato
  * @property string $sobremesa
- * @property string $img
  *
  * @property \App\Model\Entity\User[] $users
  */

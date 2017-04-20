@@ -1,13 +1,20 @@
 <?php
 namespace App\Controller;
-
+ 
+use Cake\Core\Configure;
+use Cake\Network\Exception\ForbiddenException;
+use Cake\Network\Exception\NotFoundException;
+use Cake\View\Exception\MissingTemplateException;
 use App\Controller\AppController;
+use Cake\Event\Event;
+
+use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * Users Controller
  *
  * @property \App\Model\Table\UsersTable $Users
- */
+ */ 
 class UsersController extends AppController
 {
 
@@ -107,5 +114,68 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    //Função que irá realizar o login
+    public function Login()
+    {
+        //realizar o login
+        if ($this->request->is('post')) 
+        {
+            $user = $this->Auth->identify();
+            if ($user['status'] == 'ativado') 
+            {
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            else
+            {
+                return $this->redirect('');
+                $this->Flash->error(__('Nº Processo ou Pin ínvalido, tente novamente'));
+            }
+        }
+    }
+
+    //Função que irá realizar o Logout
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
+
+     public function changePin()
+    {
+        $user = $this->Users->get($this->Auth->user('id'));
+        if($this->request->is('put'))
+        {
+            $entidade = $this->Users->patchEntity($user,$this->request->data());
+            $user->pin = (new DefaultPasswordHasher)->hash($user->pin);
+            $this->Users->save($entidade);
+            $this->redirect(['controller'=>'Refeicoes','action'=>'marcar']);
+        }
+        $this->set('user',$user);
+    }
+
+    public function info()
+    {
+        $query = $this->Users->get($this->Auth->user('id'));
+        $this->set('user',$query);
+    }
+
+    public function saldoNormal()
+    {
+        $query = $this->Users->get($this->Auth->user('id'));
+        $this->set('user',$query);
+    }
+
+    public function saldoSubsidiada()
+    {
+        $query = $this->Users->get($this->Auth->user('id'));
+        $this->set('user',$query);
+    }
+
+    public function horario()
+    {
+        $query = $this->Users->get($this->Auth->user('id'));
+        $this->set('user',$query);
     }
 }

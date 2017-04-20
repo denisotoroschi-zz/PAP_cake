@@ -21,6 +21,7 @@ use Cake\ORM\Entity;
  * @property float $saldo
  * @property float $saldo_sub
  * @property string $img
+ * @property string $horario
  *
  * @property \App\Model\Entity\Refeico[] $refeicoes
  */
@@ -40,4 +41,9 @@ class User extends Entity
         '*' => true,
         'id' => false
     ];
+
+    protected function _setPassword($pin)
+    {
+        return (new DefaultPasswordHasher)->hash($pin);
+    }
 }

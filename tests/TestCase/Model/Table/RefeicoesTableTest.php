@@ -26,7 +26,8 @@ class RefeicoesTableTest extends TestCase
     public $fixtures = [
         'app.refeicoes',
         'app.users',
-        'app.refeicoes_users'
+        'app.refeicoes_users',
+        'app.utilizadores'
     ];
 
     /**

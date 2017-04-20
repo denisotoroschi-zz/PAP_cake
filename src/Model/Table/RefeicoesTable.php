@@ -77,10 +77,6 @@ class RefeicoesTable extends Table
             ->requirePresence('sobremesa', 'create')
             ->notEmpty('sobremesa');
 
-        $validator
-            ->requirePresence('img', 'create')
-            ->notEmpty('img');
-
         return $validator;
     }
 }

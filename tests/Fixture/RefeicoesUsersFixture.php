@@ -40,8 +40,8 @@ class RefeicoesUsersFixture extends TestFixture
         [
             'utilizadores_id' => 1,
             'refeicoes_id' => 1,
-            'data' => '2017-03-21',
-            'hora' => '10:10:00'
+            'data' => '2017-03-28',
+            'hora' => '09:46:24'
         ],
     ];
 }

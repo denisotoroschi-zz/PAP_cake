@@ -9,6 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
+ * @property \Cake\ORM\Association\BelongsToMany $Produtos
  * @property \Cake\ORM\Association\BelongsToMany $Refeicoes
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
@@ -36,6 +37,11 @@ class UsersTable extends Table
         $this->displayField('id');
         $this->primaryKey('id');
 
+        $this->belongsToMany('Produtos', [
+            'foreignKey' => 'user_id',
+            'targetForeignKey' => 'produto_id',
+            'joinTable' => 'produtos_users'
+        ]);
         $this->belongsToMany('Refeicoes', [
             'foreignKey' => 'user_id',
             'targetForeignKey' => 'refeico_id',
@@ -117,6 +123,10 @@ class UsersTable extends Table
         $validator
             ->requirePresence('img', 'create')
             ->notEmpty('img');
+
+        $validator
+            ->requirePresence('horario', 'create')
+            ->notEmpty('horario');
 
         return $validator;
     }
