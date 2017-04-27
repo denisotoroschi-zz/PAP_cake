@@ -66,7 +66,7 @@
                 },*/
           success: function()
           {
-            $('.button-' + myString).html('<button type="button" class="bloquear" id="bloquear-'+myString+'" >Bloquear</button>');
+            $('.button-' + myString).html('<button type="button" class="button special small bloquear" id="bloquear-'+myString+'" >Bloquear</button>');
             $('.status-' + myString).html('ativado');
           }
         });
@@ -83,7 +83,7 @@
                 },*/
           success: function()
           {
-            $('.button-' + myString).html('<button type="button" class="ativar" id="ativar-'+myString+'">Ativar</button>');
+            $('.button-' + myString).html('<button type="button" class="button special small ativar" id="ativar-'+myString+'">Ativar</button>');
             $('.status-' + myString).html('bloqueado');
           }
         });
@@ -91,3 +91,4 @@
 </script>
 </body>
 </html>
+https://codepen.io/anon/pen/qmqodB

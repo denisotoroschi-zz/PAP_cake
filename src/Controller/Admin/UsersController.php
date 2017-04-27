@@ -48,7 +48,6 @@ class UsersController extends AppController
                 else
                 {
                     return $this->redirect('');
-                    $this->Flash->set('Não tem permissões para aceder a este lugar!');
                 }
             }
     }

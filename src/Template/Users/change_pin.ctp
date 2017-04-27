@@ -26,22 +26,10 @@
 
 <?=$this->Html->script('frontend/jquery.min.js')?>
 <script>
-var pin = <?php $this->Auth->user('pin')?>;
 	$('#pin1, #pin2').on('keyup', function () {
 	  if ($('#pin1').val() == $('#pin2').val()) {
 	    document.getElementById('submit').disabled = false;
 	  } else 
 	    document.getElementById('submit').disabled = true; 
-	});
-
-	$('#pin3').on('keyup', function () {
-	  if ($('#pin3').val() == pin) {
-	    document.getElementById('pin1').disabled = false;
-	    document.getElementById('pin2').disabled = false;
-	    document.getElementById('submit').disabled = false;
-	  } else 
-	    document.getElementById('pin1').disabled = true;
-	    document.getElementById('pin2').disabled = true;
-	    document.getElementById('submit').disabled = true
 	});
 </script>  

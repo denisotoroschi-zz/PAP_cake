@@ -144,11 +144,18 @@ class UsersController extends AppController
 
      public function changePin()
     {
+
         $user = $this->Users->get($this->Auth->user('id'));
         if($this->request->is('put'))
         {
+            $this->request->data['pin'] = (new DefaultPasswordHasher)->hash($this->request->data['new_pin']);
+            unset($this->request->data['new_pin']);
+            unset($this->request->data['pin_antigo']);
+            unset($this->request->data['confirm_pin']);
+            //die(debug($this->request->data));
             $entidade = $this->Users->patchEntity($user,$this->request->data());
-            $user->pin = (new DefaultPasswordHasher)->hash($user->pin);
+            //die(debug($entidade));
+            //$user->pin = (new DefaultPasswordHasher)->hash($user->pin);
             $this->Users->save($entidade);
             $this->redirect(['controller'=>'Refeicoes','action'=>'marcar']);
         }

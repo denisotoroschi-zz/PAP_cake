@@ -1,4 +1,5 @@
-<?=$this->Html->css('frontend/calendar/fullcalendar.css')?>
+<?=$this->Html->css('frontend/calendar/fullcalendar.min.css')?>
+<?=$this->Html->css('frontend/calendar/fullcalendar.print.min.css',['media'=>'print'])?>
 <?=$this->Html->script('frontend/jquery.min.js')?>
 <?=$this->Html->script('frontend/calendar/moment.min.js')?>
 <?=$this->Html->script('frontend/calendar/fullcalendar.js')?>
@@ -24,10 +25,18 @@
 	    }
 	    $('#calendar').fullCalendar({
 	        // put your options and callbacks here
-	        aspectRatio: aspect
+	        aspectRatio: aspect,
+	        header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'list,month'
+			},
+			events:[{
+					title: 'Feijoada de porco',
+					start: '2017-04-03'
+				}] 
+	        
 	    }) 
-	    
-
 	});
 </script>
 

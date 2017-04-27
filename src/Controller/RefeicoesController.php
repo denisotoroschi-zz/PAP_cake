@@ -22,6 +22,7 @@ class RefeicoesController extends AppController
 
         $this->set(compact('refeicoes'));
         $this->set('_serialize', ['refeicoes']);
+        $this->loadComponent('RequestHandler');
     }
 
     /**
@@ -111,6 +112,11 @@ class RefeicoesController extends AppController
 
     public function marcar()
     {
-        
+       $dados=$this->Refeicoes->find('all');
+       foreach($dados as $dado)
+       {
+        die(debug($dado['preco']));
+       }
+       
     }
 }
